@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/c2976e1668.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="estilos/style.css" />
+    <title>To Do List</title>
+  </head>
+  <body>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+      <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="main-wrapper">
+      <div class="container">
+      <div class="perfil">
+        <div id="fecha"></div>
+        <h1>Hola, <span id="username"></span></h1>
+        <span>Vamos a cumplir las tareas del dia de hoy</span>
+      </div>
+
+        <div class="agregar-tarea">
+          <input type="text" id="input" placeholder="Agregar tarea" />
+          <i id="enter" class="fas fa-plus-circle"></i>
+        </div>
+
+        <div class="seccion-tarea">
+          <h3>Estas son tus tareas pendientes</h3>
+          <ul id="lista"></ul>
+        </div>
+      </div>
+
+      <!-- Sección de Pomodoro -->
+      <div class="pomodoro-container">
+        <div class="perfil">
+          <h1>Temporizador Pomodoro</h1>
+          <span>Mejora tu productividad con la técnica Pomodoro</span>
+        </div>
+
+        <div class="timer-display">
+          <div id="timer">25:00</div>
+          <div id="session-label">Tiempo de Trabajo</div>
+        </div>
+
+        <div class="timer-controls">
+          <button id="start-btn" class="control-btn">
+            <i class="fas fa-play"></i>
+            <span>Iniciar</span>
+          </button>
+          <button id="pause-btn" class="control-btn">
+            <i class="fas fa-pause"></i>
+            <span>Pausar</span>
+          </button>
+          <button id="reset-btn" class="control-btn">
+            <i class="fas fa-redo"></i>
+            <span>Reiniciar</span>
+          </button>
+        </div>
+
+        <div class="pomodoro-stats">
+          <div class="stat-item">
+            <span class="stat-label">Pomodoros completados hoy:</span>
+            <span id="pomodoro-count" class="stat-value">0</span>
+          </div>
+        </div>
+
+        <div class="timer-settings">
+          <h3>Configuración</h3>
+          <div class="setting-item">
+            <label for="work-time">Tiempo de trabajo (min):</label>
+            <input type="number" id="work-time" min="1" max="60" value="25" />
+          </div>
+          <div class="setting-item">
+            <label for="break-time">Tiempo de descanso (min):</label>
+            <input type="number" id="break-time" min="1" max="30" value="5" />
+          </div>
+          <button id="apply-settings" class="apply-btn">Aplicar cambios</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

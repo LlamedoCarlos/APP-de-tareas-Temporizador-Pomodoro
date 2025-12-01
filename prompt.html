@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Switch con prompt y UI</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background:#f6f8fb; color:#222; }
+    h1 { margin-bottom: 8px; }
+    .card { background:white; padding:16px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:12px; }
+    button { padding:8px 12px; border:none; background:#0366d6; color:white; border-radius:6px; cursor:pointer; }
+    select { padding:6px; border-radius:6px; }
+    .result { margin-top:10px; padding:10px; background:#f1f5fb; border-radius:6px; }
+    small { color:#666; }
+  </style>
+</head>
+<body>
+  <h1>Ejemplo: switch en JavaScript (prompt + UI)</h1>
+
+  <div class="card">
+    <h2>1) Usando prompt()</h2>
+    <p>
+      Haz clic y aparecerá un prompt del navegador. Ingresa 1, 2 o 3.
+      <br /><small>Opciones: 1) Saludo, 2) Mostrar fecha, 3) Abrir Google</small>
+    </p>
+    <button id="promptBtn">Abrir prompt</button>
+    <div id="promptResult" class="result" aria-live="polite"></div>
+  </div>
+
+  <div class="card">
+    <h2>2) Interfaz en la página (recomendado)</h2>
+    <p>Selecciona una opción y presiona "Ejecutar".</p>
+    <select id="opciones" aria-label="Opciones">
+      <option value="">-- Elige una opción --</option>
+      <option value="1">1 — Saludo</option>
+      <option value="2">2 — Mostrar fecha</option>
+      <option value="3">3 — Abrir Google</option>
+    </select>
+    <button id="uiBtn">Ejecutar</button>
+    <div id="uiResult" class="result" aria-live="polite"></div>
+  </div>
+
+  <script>
+    // Función que recibe la elección y devuelve una acción/resultado.
+    // Aquí usamos strings ('1','2','3') para facilidad. Si quisieras números, parseInt(choice).
+    function handleChoice(choice) {
+      switch (choice) {
+        case '1':
+          // Puedes reemplazar esto por cualquier otra función: showGreeting(), renderModal(), etc.
+          return '¡Hola! Elegiste la opción 1. Bienvenido.';
+        case '2':
+          // Ejemplo: devolver la fecha actual
+          return 'Fecha y hora actual: ' + new Date().toLocaleString();
+        case '3':
+          // Para opciones que abren enlaces o ejecutan acciones, retornamos un texto y la llamamos externamente.
+          return 'Se abrirá Google en una nueva pestaña.';
+        default:
+          return 'Opción no válida. Ingresa 1, 2 o 3.';
+      }
+    }
+
+    // Prompt button
+    document.getElementById('promptBtn').addEventListener('click', function () {
+      const raw = prompt('Elige una opción:\\n1) Saludo\\n2) Fecha\\n3) Abrir Google');
+      // Si el usuario presiona cancelar, raw será null
+      const choice = raw === null ? '' : raw.trim();
+      const result = handleChoice(choice);
+      document.getElementById('promptResult').textContent = result;
+      if (choice === '3') {
+        // Abrir en nueva pestaña solo si el usuario eligió 3
+        window.open('https://www.google.com', '_blank', 'noopener');
+      }
+    });
+
+    // UI button (select)
+    document.getElementById('uiBtn').addEventListener('click', function () {
+      const sel = document.getElementById('opciones').value;
+      const result = handleChoice(sel);
+      document.getElementById('uiResult').textContent = result;
+      if (sel === '3') {
+        window.open('https://www.google.com', '_blank', 'noopener');
+      }
+    });
+
+    // (Opcional) permitir Enter para ejecutar la opción del select
+    document.getElementById('opciones').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') document.getElementById('uiBtn').click();
+    });
+  </script>
+</body>
+</html>

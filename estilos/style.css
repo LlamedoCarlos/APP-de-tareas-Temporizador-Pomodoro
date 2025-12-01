@@ -1,0 +1,450 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --white: #ffffff;
+    --off-white: #f8f9fa;
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --secondary: #10b981;
+    --secondary-dark: #059669;
+    --accent: #8b5cf6;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --background: #f3f4f6;
+    --card-bg: #ffffff;
+    --border: #e5e7eb;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* Modo Oscuro */
+body.dark-mode {
+    --white: #1f2937;
+    --off-white: #111827;
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --secondary: #10b981;
+    --secondary-dark: #059669;
+    --accent: #a78bfa;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --background: #0f172a;
+    --card-bg: #1e293b;
+    --border: #334155;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(0, 0, 0, 0.5);
+}
+
+body {
+    background: var(--background);
+    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    overflow: hidden;
+    color: var(--text-primary);
+}
+
+.main-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    gap: 1px;
+    background: var(--border);
+}
+
+.container{
+    width: 50%;
+    height: 100vh;
+    padding: 40px;
+    overflow-y: auto;
+    background: var(--white);
+}
+
+.pomodoro-container {
+    width: 50%;
+    height: 100vh;
+    padding: 40px;
+    overflow-y: auto;
+    background: var(--off-white);
+}
+
+
+.perfil h1{
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.perfil span{
+    color: var(--text-secondary);
+    letter-spacing: 0.3px;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+#fecha {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    padding: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.agregar-tarea {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+    margin: 32px 0;
+    border: 2px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.agregar-tarea:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.agregar-tarea input {
+   width: 100%;
+   height: 100%;
+   border-radius: 8px;
+   border: none;
+   background-color: transparent;
+   font-size: 0.95rem;
+   color: var(--text-primary);
+   outline: none;
+}
+
+.agregar-tarea i {
+    font-size: 28px;
+    color: var(--primary);
+    transition: all 0.2s ease;
+}
+
+.agregar-tarea i:hover {
+    cursor: pointer;
+    color: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.agregar-tarea input::placeholder {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+
+.seccion-tarea h3{
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+
+
+.seccion-tarea li{
+    display: flex;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 16px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+}
+
+.seccion-tarea li:hover {
+    box-shadow: 0 4px 12px var(--shadow);
+    transform: translateY(-2px);
+}
+
+
+.seccion-tarea i{
+    font-size: 22px;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.seccion-tarea i:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.seccion-tarea .fa-circle:hover,
+.seccion-tarea .fa-check-circle:hover {
+    color: var(--secondary);
+}
+
+.seccion-tarea .fa-trash:hover {
+    color: #ef4444;
+}
+
+.seccion-tarea > ul li p{
+    font-size: 1rem;
+    flex: 1;
+    padding: 0 16px;
+}
+
+
+.line-through{
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+/* Estilos del Pomodoro */
+.timer-display {
+    text-align: center;
+    margin: 40px 0;
+    padding: 50px 40px;
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
+    border: 1px solid var(--border);
+}
+
+#timer {
+    font-size: 5.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -2px;
+    font-variant-numeric: tabular-nums;
+}
+
+#session-label {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 30px 0;
+}
+
+.control-btn {
+    background-color: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    min-width: 100px;
+}
+
+.control-btn i {
+    font-size: 1.75rem;
+    transition: all 0.3s ease;
+}
+
+.control-btn span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.control-btn:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--shadow-hover);
+}
+
+#pause-btn:hover {
+    background-color: #f59e0b;
+    border-color: #f59e0b;
+}
+
+#reset-btn:hover {
+    background-color: #6b7280;
+    border-color: #6b7280;
+}
+
+.control-btn:active {
+    transform: translateY(-1px);
+}
+
+.pomodoro-stats {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 20px 0;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-settings {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.timer-settings h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.setting-item label {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.setting-item input {
+    width: 80px;
+    padding: 10px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--white);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.setting-item input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.apply-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+.apply-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--shadow-hover);
+}
+
+.apply-btn:active {
+    transform: translateY(0);
+}
+
+/* Scrollbar personalizada */
+.container::-webkit-scrollbar,
+.pomodoro-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container::-webkit-scrollbar-track,
+.pomodoro-container::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+.container::-webkit-scrollbar-thumb,
+.pomodoro-container::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover,
+.pomodoro-container::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Botón de cambio de tema */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 2px solid var(--border);
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    background-color: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+    box-shadow: 0 6px 16px var(--shadow-hover);
+}
+
+.theme-toggle:active {
+    transform: scale(1.05) rotate(15deg);
+}
+
+body.dark-mode .theme-toggle {
+    background-color: var(--card-bg);
+}
