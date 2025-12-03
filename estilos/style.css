@@ -448,3 +448,264 @@ body {
 body.dark-mode .theme-toggle {
     background-color: var(--card-bg);
 }
+
+/* ========================================= */
+/* RESPONSIVE DESIGN - MOBILE FIRST */
+/* ========================================= */
+
+/* Tablets y pantallas medianas (768px o menos) */
+@media screen and (max-width: 768px) {
+    .main-wrapper {
+        flex-direction: column;
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .container,
+    .pomodoro-container {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .perfil h1 {
+        font-size: 1.5rem;
+    }
+
+    .perfil span {
+        font-size: 0.85rem;
+    }
+
+    #fecha {
+        font-size: 0.75rem;
+    }
+
+    .agregar-tarea {
+        height: 50px;
+        margin: 20px 0;
+        padding: 0 12px;
+        gap: 8px;
+    }
+
+    .agregar-tarea i {
+        font-size: 24px;
+    }
+
+    .agregar-tarea input::placeholder {
+        font-size: 0.85rem;
+    }
+
+    .seccion-tarea h3 {
+        font-size: 1rem;
+    }
+
+    .seccion-tarea li {
+        padding: 12px;
+        margin: 8px 0;
+    }
+
+    .seccion-tarea i {
+        font-size: 20px;
+    }
+
+    .seccion-tarea > ul li p {
+        font-size: 0.9rem;
+        padding: 0 12px;
+    }
+
+    /* Pomodoro móvil */
+    .timer-display {
+        margin: 20px 0;
+        padding: 30px 20px;
+    }
+
+    #timer {
+        font-size: 3.5rem;
+        letter-spacing: -1px;
+    }
+
+    #session-label {
+        font-size: 0.95rem;
+    }
+
+    .timer-controls {
+        gap: 10px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+    }
+
+    .control-btn {
+        padding: 12px 16px;
+        min-width: 80px;
+        flex: 1;
+    }
+
+    .control-btn i {
+        font-size: 1.5rem;
+    }
+
+    .control-btn span {
+        font-size: 0.75rem;
+    }
+
+    .pomodoro-stats {
+        padding: 16px;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    .timer-settings {
+        padding: 16px;
+    }
+
+    .timer-settings h3 {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .setting-item {
+        margin-bottom: 12px;
+    }
+
+    .setting-item label {
+        font-size: 0.85rem;
+    }
+
+    .setting-item input {
+        width: 70px;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .apply-btn {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    /* Botón de tema más pequeño en móvil */
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Móviles pequeños (480px o menos) */
+@media screen and (max-width: 480px) {
+    .container,
+    .pomodoro-container {
+        padding: 16px;
+    }
+
+    .perfil h1 {
+        font-size: 1.3rem;
+    }
+
+    .perfil span {
+        font-size: 0.8rem;
+    }
+
+    .agregar-tarea {
+        height: 45px;
+        padding: 0 10px;
+    }
+
+    .agregar-tarea i {
+        font-size: 22px;
+    }
+
+    .seccion-tarea li {
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+
+    .seccion-tarea > ul li p {
+        font-size: 0.85rem;
+        padding: 0 8px;
+        word-break: break-word;
+    }
+
+    #timer {
+        font-size: 2.8rem;
+    }
+
+    #session-label {
+        font-size: 0.85rem;
+    }
+
+    .control-btn {
+        min-width: 70px;
+        padding: 10px 12px;
+    }
+
+    .control-btn i {
+        font-size: 1.3rem;
+    }
+
+    .control-btn span {
+        font-size: 0.7rem;
+    }
+
+    .stat-value {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+    }
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        top: 12px;
+        right: 12px;
+        font-size: 1rem;
+    }
+
+    .timer-display {
+        padding: 20px 15px;
+    }
+
+    .timer-settings,
+    .pomodoro-stats {
+        padding: 12px;
+    }
+}
+
+/* Mejoras táctiles para móviles */
+@media (hover: none) and (pointer: coarse) {
+    .control-btn,
+    .apply-btn,
+    .theme-toggle,
+    .agregar-tarea i,
+    .seccion-tarea i {
+        /* Aumentar área táctil */
+        min-height: 44px;
+    }
+
+    .control-btn:hover,
+    .apply-btn:hover,
+    .theme-toggle:hover {
+        transform: none; /* Desactivar transforms en hover para móvil */
+    }
+
+    .control-btn:active {
+        background-color: var(--primary);
+        color: var(--white);
+    }
+
+    .theme-toggle:active {
+        background-color: var(--primary);
+        color: var(--white);
+    }
+}
