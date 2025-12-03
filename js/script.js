@@ -347,7 +347,9 @@ function cargarLista(DATA) { // 8
       currentTime--;
       updateDisplay();
     } else {
-      // Tiempo completado
+      // Tiempo completado - DETENER el temporizador primero
+      pause();
+      
       if (isWorking) {
         // Completó un pomodoro de trabajo
         pomodoroCount++;
@@ -365,6 +367,13 @@ function cargarLista(DATA) { // 8
         // Cambiar a descanso
         isWorking = false;
         currentTime = breakTime;
+        updateDisplay();
+        
+        // Auto-iniciar descanso (opcional, puedes comentar si prefieres manual)
+        setTimeout(() => {
+          start();
+        }, 500);
+        
       } else {
         // Completó el descanso
         if ('Notification' in window && Notification.permission === 'granted') {
@@ -377,8 +386,10 @@ function cargarLista(DATA) { // 8
         // Volver a trabajo
         isWorking = true;
         currentTime = workTime;
+        updateDisplay();
+        
+        // No auto-iniciar el trabajo, dejar que el usuario decida
       }
-      updateDisplay();
     }
   }
 
