@@ -348,7 +348,11 @@ function cargarLista(DATA) { // 8
       updateDisplay();
     } else {
       // Tiempo completado - DETENER el temporizador primero
-      pause();
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+      isRunning = false;
       
       if (isWorking) {
         // Completó un pomodoro de trabajo
@@ -369,10 +373,9 @@ function cargarLista(DATA) { // 8
         currentTime = breakTime;
         updateDisplay();
         
-        // Auto-iniciar descanso (opcional, puedes comentar si prefieres manual)
-        setTimeout(() => {
-          start();
-        }, 500);
+        // Auto-iniciar descanso inmediatamente
+        isRunning = true;
+        intervalId = setInterval(tick, 1000);
         
       } else {
         // Completó el descanso
@@ -383,12 +386,10 @@ function cargarLista(DATA) { // 8
           });
         }
         
-        // Volver a trabajo
+        // Volver a trabajo pero NO auto-iniciar
         isWorking = true;
         currentTime = workTime;
         updateDisplay();
-        
-        // No auto-iniciar el trabajo, dejar que el usuario decida
       }
     }
   }
